@@ -1,0 +1,37 @@
+# LaTeX temporary files
+*.aux
+*.log
+*.synctex.gz
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.dvi
+*.ps
+*.pdfsync
+
+
+# LaTeX auto-generated files
+*.bbl
+*.blg
+
+# TeXShop files (if you use TeXShop)
+*.bak
+*.backup
+*.dvi.bz2
+*.pdf.bz2
+
+# LaTeX editor backup files
+*.swp
+*.swo
+*.synctex(busy)
+*.fdb_latexmk
+*.synctex
+
+# LaTeX editor project-specific files 
+.vscode/
+.texworks/
+*.sublime-project
+*.sublime-workspace

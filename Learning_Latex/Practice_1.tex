@@ -1,0 +1,30 @@
+%\documentclass[a4paper, 11pt]{article}
+\documentclass[preview, border=10pt]{article}
+\usepackage[Sonny]{fncychap}
+\usepackage{lipsum}
+\usepackage{booktabs} % The package enhances the quality of tables in LaTeX
+
+%%%%% Macros %%%%%
+\renewcommand*\c{\ttfamily\textbackslash} % for backslash using \c
+
+\title{Practice Set - 1}
+\author{Aong Cho Marma}
+\date{June 27, 2023}
+
+\begin{document}
+	\maketitle
+%	\tableofcontents
+	
+	\section{Basic Documentation Style Test}
+%	\lipsum[1]
+	This chapter is about basic documentation style test in \LaTeX{}.Here I'll check how could be change the style of every single word such as font color, font style, indentation, writing special characters and so on. Moreover here I'll check the margin style of the page. Here I'll divide this chapter according to the features of \LaTeX{} and its uses.So, no longer wasting time, let's get start it.
+		
+	\section{Font commands}
+	\begin{tabular}{l l l}
+	\toprule
+	\textbf{Command} & \textbf{Declaration} & \textbf{Meaning} \\
+	\midrule
+	\c textrm\{\ldots\}		& \c rmfamily	& \normalfont\rmfamily{roman family} \\
+	\c textsf\{\ldots\}		& \c sffamily & \normalfont\sffamily{sans-serif family} \\
+	\end{tabular}
+\end{document}

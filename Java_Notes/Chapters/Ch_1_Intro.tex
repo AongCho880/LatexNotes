@@ -1,0 +1,185 @@
+\newpage
+\chapter{INTRODUCTION}
+Java is a General Purpose Programming Language (GPL) and also powerful programming language.
+Java developed at \textbf{Sun Microsystems} which was purchased by \textbf{Oracle} in 2010.
+Java is GPL because it is used to solve a wide variety of problems and build software.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Specification %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{JAVA LANGUAGE SPECIFICATION}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{THE SYNTAX \& SEMANTICS}
+To write English we should follow some rules (Grammar). Also, to write java we should follow some rules that is called \textbf{syntax \& semantics}\\
+\textbf{Example:}
+\begin{itemize}
+	\item[{\LARGE $\diamond$}] He \textcolor{red}{are} playing $\Rightarrow$ Syntax error.(Grammar)
+	\item[{\LARGE $\diamond$}] He is hello and bye $\Rightarrow$ Semantic error.(Meaning)
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{API}
+\textbf{Application Programming Interface (API)} also known as \textbf{library}. It contains predefined Java code that we can use to develop Java programs. It makes faster and easier development process. Because we do not need to write everything from scratch.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{EDITIONS OF JAVA}
+Java comes in three editions
+\begin{itemize}
+	\item[{\LARGE $\diamond$}] \textbf{Standard Edition(SE):} Develop applications that run on desktop.
+	\item[{\LARGE $\diamond$}] \textbf{Enterprise Edition(EE):} Develop server-side applications.
+	\item[{\LARGE $\diamond$}] \textbf{Micro Edition(ME):} Develop applications for mobile devices.
+\end{itemize}
+
+\begin{quotation}
+	\textbf{NOTE:} Java SE is the foundation of all other editions.
+\end{quotation}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{JDK}
+Java Development Kit (JDK)
+\begin{itemize}
+	\item[{\LARGE $\diamond$}] Set of programs that enable us to develop our programs.
+	
+	\item[{\LARGE $\diamond$}] Contains \textbf{JRE(Java Runtime Environment)} that is used to run out programs.
+	
+	\item[{\LARGE $\diamond$}] \textbf{JDK \& JRE} contain \textbf{JVM (Java Virtual Machine)}.
+	
+	\item[{\LARGE $\diamond$}] \textbf{JVM} executes our java programs on different machines that makes Java independent.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{IDE}
+\textbf{Integrated Development Environment (IDE)} is a program that allows us to-
+\begin{itemize}
+	\item[{\LARGE $\diamond$}] \textbf{Write}: Write source code
+	\item[{\LARGE $\diamond$}] \textbf{Compile}: Translate source code to machine code
+	\item[{\LARGE $\diamond$}] \textbf{Debug}: Tools to find errors
+	\item[{\LARGE $\diamond$}] \textbf{Build}: Files that can be executed by JVM
+	\item[{\LARGE $\diamond$}] \textbf{Run}: Execute program
+\end{itemize}
+IDE makes development faster and easier. NetBeans, Eclipse, IntelliJ IDE are the popular Java IDEs.
+\begin{quotation}
+	\textbf{NOTE:} The Java source code first compiled into a binary byte code using Java compiler, then this byte code runs on the JVM, Which is a software based interpreter. So Java is considered as both interpreted and compiled.
+\end{quotation} 
+
+
+%%%%%%%%%%%%%%%%%%%%%%% Anatomy of Java Program %%%%%%%%%%%%%%%
+\section{ANATOMY OF JAVA PROGRAM}
+
+%%%%%%%%%%%%%
+\subsection{CLASS}
+A blueprint to create \textsl{OBJECTS}.
+
+%%%%%%
+\subsubsection{CLASS STRUCTURE}
+\begin{lstlisting}[language=java]
+	class class_name {
+		code block
+	}
+	// "class" is keyword.
+\end{lstlisting}
+
+%%%%%%%%%%%%%%%
+\subsection{OBJECTS}
+An instance of a \textsl{CLASS}.
+
+%%%%%%%%%%%%%%%
+\subsection{METHOD}
+Group of instruction to do a specific task.
+
+\subsubsection{METHOD STRUCTURE}
+Each method consists of 4 main parts.
+\begin{itemize}
+	\item[{\LARGE $\diamond$}] Return Type
+	\item[{\LARGE $\diamond$}] Method Name
+	\item[{\LARGE $\diamond$}]Parameter
+	\item[{\LARGE $\diamond$}]Code Block
+\end{itemize}
+
+\begin{lstlisting}[language=java]
+	return_type method_name(parameter) {
+		code block
+	}
+\end{lstlisting}
+
+\begin{quotation}
+	\textbf{NOTE :} Every method is written inside a \textsl{CLASS}.
+\end{quotation}
+
+\subsubsection{CALLING A METHOD}
+It is basically using the method
+\begin{lstlisting}[language=java]
+	method_name(parameter);
+\end{lstlisting}
+
+\begin{quotation}
+	\textbf{NOTE :} The \textsl{main()} method is automatically called when we run the JAVA program.
+	\begin{itemize}
+		\item It is the first method that is called.
+		\item It is the starting point of execution of a program.
+	\end{itemize}
+\end{quotation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{ACCESS MODIFIERS}
+The access modifiers in JAVA specifies the accessibility of a field, method, constructor, or class.\\
+There are four types of JAVA access modifiers :
+\begin{itemize}
+	\item[{\LARGE $\diamond$}] \textbf{Private :} Access level only within the class, can not be accessed from outside the class.
+	
+	\item[{\LARGE $\diamond$}] \textbf{Default :} Access level only within the package. If do not specify any access leve then it will be the default.
+	
+	\item[{\LARGE $\diamond$}] \textbf{Protected :} Access level within the package and outside the package \textsl{through child class}. If do not make the child class, it can not be accessed from outside the package.
+	
+	\item[{\LARGE $\diamond$}] \textbf{Public :} Access level everywhere, within or outside the class and package.
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{NAMING CONVENTIONS}
+How to write name in programming.
+\begin{itemize}
+	\item[{\LARGE $\diamond$}] \textbf{Pascal Case Convention :}
+	\begin{itemize}
+		\item ThisIsAName
+		\item Naming \textsl{Class}
+	\end{itemize}
+		
+		
+	\item[{\LARGE $\diamond$}] \textbf{Camel Case Convention :}
+	\begin{itemize}
+		\item thisIsAName
+		\item Naming \textsl{Methods \& Variables}
+	\end{itemize}
+	
+	\item[{\LARGE $\diamond$}] \textbf{Snake Case Convention :}
+	\begin{itemize}
+		\item this\_is\_name
+	\end{itemize}
+	
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{JAVA PROGRAM STRUCTURE}
+\begin{lstlisting}[language=java]
+	public class Main {
+		public static void main ( String[] args) {
+			code_block
+		}
+	}
+\end{lstlisting}
+
+%%%%%%%%%%%%%%%%%
+\subsection{PACKAGE}
+A container for Classes.
+
+\begin{quotation}
+	\textbf{NOTE :}
+	\begin{itemize}
+		\item Package contains Classes
+		\item Class contains Methods \&
+		\item Method contains code blocks
+	\end{itemize}
+\end{quotation}

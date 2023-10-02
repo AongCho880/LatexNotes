@@ -1,0 +1,62 @@
+\newpage
+\chapter{Problems and Solutions}
+
+%____________ Maximum Sub-Array Sum ___________________%
+\section{Maximum Sub-array Sum}
+Given an array of $n$ integers. Find the maximum possible sub-array sum.
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+	\hline
+	-1 &\cellcolor[gray]{0.7}2 &\cellcolor[gray]{0.7}4 &\cellcolor[gray]{0.7}-3 &\cellcolor[gray]{0.7}5 &\cellcolor[gray]{0.7}2 & -5 & 2\\
+	\hline
+\end{tabular}
+\end{center}
+
+\subsection{Solution with $O(n^3)$ time complexity}
+\begin{lstlisting}[language=c++]
+long long maxSubArraySum(int n, int arr[]) {
+    long long maxSum=0;
+    for(int a=0; a<n; a++) {
+        for(int b=a; b<n; b++) {
+            long long sum=0;
+            for(int i=a; i<=b; i++) {
+                sum += arr[i];
+            }
+            maxSum = max(maxSum,sum);
+        }
+    }
+    return maxSum;
+}
+\end{lstlisting}
+The code will take about 1 second to execute for a maximum value of n=500
+
+
+\subsection{Solution with $O(n^2)$ time complexity}
+\begin{lstlisting}[language=c++]
+long long maxSubArraySum(int n, int arr[]) {
+    long long maxSum=0;
+    for(int a=0; a<n; a++) {
+        long long sum=0;
+        for(int b=a; b<n; b++) {
+            sum += arr[b];
+            maxSum = max(maxSum,sum);
+        }
+    }
+    return maxSum;
+}
+\end{lstlisting}
+For this code the execution time is approximately 1 second for n=5000
+
+
+\subsection{Solution with $O(n)$ time complexity}
+\begin{lstlisting}[language=c++]
+long long maxSubArraySum(int n, long long arr[]) {
+    long long maxSum=0, sum=0;
+    for(int a=0; a<n; a++) {
+        sum = max(arr[a], sum+arr[a]);
+        maxSum = max(maxSum, sum);
+    }
+    return maxSum;
+}
+\end{lstlisting}
+The time complexity of the above code is linear. It will execute about within 1 second for $n\leq 10^6$.

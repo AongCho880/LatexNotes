@@ -1,0 +1,153 @@
+\newpage
+\chapter{\textbf{Big Integer}}
+In C or C++, we have different types of data types like integers, long, float, characters etc. Each data type occupies some amount of memory. There is a range of numbers that can be occupied by that data type.\\
+For example, an integer occupies 4 bytes of memory so that we can have numbers from -2147483648 to +2147463647.\\
+So, if we want to have an integer where the number of digits in decimal format is 22 or more, then we cannot store it using primitive data types.\\
+
+%%%%%%%%%%%%%%%%%%%%%%%% Addition %%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{\textbf{Addition of two Big Integers}}
+
+\setlength{\columnsep}{1 cm}
+\begin{multicols}{2}
+\begin{lstlisting}[language=c++]
+#include <iostream>
+#include <algorithm>
+#include <string>
+using namespace std;
+
+// Char to int .........
+int charToInt ( char ch) {
+    return ch - '0';
+}
+
+// Int to char ........
+char intToChar (int digit) {
+    return digit + '0';
+}
+
+// Addition method ....................
+string addition(string n1, string n2) {
+
+    // make sure n1 <= n2 ........
+    if(n1.length() > n2.length()) {
+        swap(n1,n2);
+    }
+
+    // Reverse the numbers .....
+    reverse(n1.begin(),n1.end());
+    reverse(n2.begin(),n2.end());
+
+    int carry = 0;
+    string result;
+
+    for(int i=0; i<n1.length(); i++) {
+        int d1 = charToInt(n1[i]);
+        int d2 = charToInt(n2[i]);
+        int sum = d1 + d2 + carry;
+        int outputDigit = sum % 10;
+        carry = sum/10;
+        result.push_back(intToChar(outputDigit));
+    }
+
+    for(int i=n1.length(); i<n2.length(); i++) {
+        int d = charToInt(n2[i]);
+        int sum = d + carry;
+        int outputDigit = sum % 10;
+        carry = sum /10;
+        result.push_back(intToChar(outputDigit));
+    }
+
+    if(carry) {
+        result.push_back('1');
+    }
+
+    // Reaverse the result ........
+    reverse(result.begin(), result.end());
+
+    return result;
+}
+
+int main () {
+    string s1,s2;
+    cin >> s1 >> s2;
+
+    string sum = addition(s1,s2);
+    cout << sum << endl;
+
+    return 0;
+}
+\end{lstlisting}
+
+\end{multicols}
+
+
+%%%%%%%%%%%%%%%%%%% Big Factorial %%%%%%%%%%%%%%%%
+\newpage
+\section{Big Factorial}
+
+\setlength{\columnsep}{1 cm}
+\begin{multicols}{2}
+
+\begin{lstlisting}[language=C++]
+#include <iostream>
+#include <algorithm>
+#include <string>
+using namespace std;
+
+// ....... Char to Int ...........
+int charToInt (char ch) {
+    return ch - '0';
+}
+
+// ....... Int to Char ..........
+char intToChar (int n) {
+    return n + '0';
+}
+
+// ......... Multiplication ............
+string multiplication(string n1, int n2) {
+
+    reverse(n1.begin(), n1.end());
+    string result;
+    int carry = 0;
+    
+    for (char ch: n1) {
+        int mul = charToInt(ch)*n2 + carry;
+        result.push_back(intToChar(mul%10));
+        carry = mul/10;
+    }
+
+    while(carry) {
+        result.push_back(intToChar(carry%10));
+        carry /= 10;
+    }
+
+    reverse(result.begin(), result.end());
+    return result;
+}
+
+// ......... Big Factorial Method ..........
+string bigFactorial(int n) {
+    string fact = "1";
+    for(int i=2; i<=n; i++) {
+        fact = multiplication(fact,i);
+    }
+    return fact;
+}
+\end{lstlisting}
+
+\columnbreak
+
+\begin{lstlisting}[language=C++]
+int main () {
+    int n;
+    cin >> n;
+    cout << bigFactorial(n) << endl;
+    return 0;
+}
+\end{lstlisting}
+
+\end{multicols}
+
+

@@ -1,0 +1,60 @@
+\newpage
+\chapter{Number Theory}
+Here we will discuss about the basic number theory related CP problems.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Prime Number}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Primality Test}
+Check if a given integer is prime or not.
+
+\begin{lstlisting}[language=C++]
+
+bool isPrime(int n) {
+	if(n<2)
+		return false;
+	else if(n<=3)
+		return true;
+	else if(n%2==0)
+		return false;
+	else {
+		for(int i=3; i<=sqrt(n); i+=2) {
+			if(n%i==0)
+				return false;		
+		}
+		return true;
+	}
+}
+
+\end{lstlisting}
+
+%%%%%%%%%%%%%%%%%%%
+\newpage
+\subsection{Count Prime Number}
+Count the total prime number within the given integer number.\\
+
+\textbf{Sieve of Eratosthenes Technique}
+\begin{lstlisting}[language=C++]
+
+int countPrimes(int n) {
+    vector <bool> isPrime;
+    for(int i=0; i<n; i++)
+      isPrime.push_back(true);
+    
+    for(int i=2; i*i<n; i++) {
+        if(isPrime[i]) {
+            for(int j=i*i; j<n; j+=i)
+              isPrime[j] = false;
+        }
+    }
+
+    int countP=0;
+    for(int i=2; i<n; i++){
+        if(isPrime[i])
+          countP++;
+    }
+    return countP;
+}
+
+\end{lstlisting}

@@ -1,0 +1,171 @@
+\newpage
+\chapter{Basic Hashing}
+Hashing is a technique of mapping keys and values into the hash table by using hash function. It is done for faster access to elements. The efficiency of mapping depends on the efficiency of the hash function used.\\
+Hashing is used to solve a lot of problems involving linked lists, arrays, sliding window, graph algorithms etc.
+
+Hash table of a menu of a restaurant.
+\begin{table}[!h]
+	\begin{center}
+		\begin{tabular}{cc}
+		\hline
+		\head{Key} & \head{Values}\\
+		\hline
+		Cold Drink & 20 \\
+		Pizza & 100 \\
+		Dosa & 50 \\
+		\hline
+\end{tabular}
+	\end{center}
+\end{table}
+
+Hash table supports three basic operations.
+\begin{table}[!h]
+	\begin{center}
+		\begin{tabular}{cc}
+		\hline
+		\head{Operation} & \head{Time complexity}\\
+		\hline
+		insertion & $O(1)$ on an average\\
+		searching & $O(1)$ on an average\\
+		erase     & $O(1)$ on an average\\
+		\hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Hash Table Containers %%%%%%%%%%%%%%%%%%%%%%
+
+\section{Containers to Implement Hash Table in C++}
+\textbf{\textcolor{violet}{\texttt{Unordered\_Maps}}} $\&$ \textbf{\textcolor{violet}{\texttt{Unordered\_stes}}} can be used to implement hash table in C++.\\
+
+\begin{itemize}
+	\item Time Complexity is $O(1)$ on an average.
+	
+	\item \textbf{\textcolor{violet}{\texttt{Unordered\_Maps}}} container stores \textbf{\texttt{key-value}} pairs. (Similar as \texttt{dictionary in \textbf{Python}})
+	
+	\item \textbf{\textcolor{violet}{\texttt{Unordered\_sets}}} container stores \textbf{\texttt{key}} only.
+\end{itemize}
+
+These containers can be used to solve-
+\begin{itemize}
+	\item \textbf{Array} problems
+	\item \textbf{Linked Lists} problems
+	\item \textbf{Sliding Window} problems
+	\item \textbf{Graphs} problems
+\end{itemize}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Unordered_map %%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Unordered\_map}
+Internally \textbf{\textcolor{violet}{\texttt{unordered\_maps}}} is implemented using \textbf{\texttt{Hash Table}}, the key provided to map is hashed into indices of a hash table which is why the performance of data structure depends on the hash function a lot but on average, the cost of \textbf{search} \textbf{insert} and \textbf{delete} from the hash table is $O(1)$\\
+
+\begin{quotation}
+	\textbf{Note:} In the worst case, its complexity can go from $O(1)$ to $O(n)$, especially for big prime numbers. In this situation, it is highly advisable to use a map instead to avoid a \textbf{TLE}(Time Limit Exceeded) error.
+\end{quotation}
+
+
+\textbf{Syntax:}
+\begin{lstlisting}[language=C++]
+	#include <iostream>
+	#include <string>
+	#include <unordered_map>
+	using namespace std;
+	int main() {	
+		//unordered_map<key, value> containerName;
+		unordered_map<string, int> umap;
+		ump = {
+				{"first",1},
+				{"second",2},
+				{"third",3}
+			};
+		return 0;
+	}
+\end{lstlisting}
+
+%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Methods on unordered\_map}
+\begin{itemize}
+	\item[{\LARGE $\diamond$}] \textbf{insert():} Insert one or more key-value pairs.
+	\begin{lstlisting}[language=C++]
+	ump.insert({{"fourth",4},{"fifth",5}});
+	ump.insert({"sixth",6});
+	\end{lstlisting}
+	
+	\item[{\LARGE $\diamond$}] \textbf{at():} Returns the element at the specified key.
+	\begin{lstlisting}[language=C++]
+	cout << "Value of key ump['first'] = " << ump.at("first") << endl;
+	\end{lstlisting}
+	
+	\item[{\LARGE $\diamond$}] \textbf{count():} Returns 1 if key exists and 0 if not.
+	\begin{lstlisting}[language=C++]
+	cout << "Is ump['first'] exist = " << ump.count("first") << endl;
+	\end{lstlisting}
+	
+	\item[{\LARGE $\diamond$}] \textbf{find():} Returns an iterator if the given key exists otherwise returns the end of the map iterator.
+	\begin{lstlisting}[language=C++]
+	if(ump.find("first") == ump.end()) {
+		cout << "'first' key doesn't exist." << endl;
+	else
+		cout << "'first' key exist." << endl;
+	\end{lstlisting}
+	
+	\item[{\LARGE $\diamond$}] \textbf{size():} Returns the number of elements.
+	\begin{lstlisting}[language=C++]
+	cout << "Size of the container = " << ump.size() << endl;
+	\end{lstlisting}
+	
+	\item[{\LARGE $\diamond$}] \textbf{empty():} Returns \texttt{true} if the container is empty.
+	\begin{lstlisting}[language=C++]
+	cout << "The container is empty = " << ump.empty() << endl;
+	\end{lstlisting}
+	
+	\item[{\LARGE $\diamond$}] \textbf{erase():} Removes elements with specified key.
+	\begin{lstlisting}[language=C++]
+	//Erase by iterator
+	ump.erase(ump.end());
+	//Erase by key
+	ump.erase("fifth");
+	//Erase by range
+	ump.erase(ump.begin(),++ump.begin());
+	\end{lstlisting}
+	
+	\item[{\LARGE $\diamond$}] \textbf{clear():} Removes all elements.
+	\begin{lstlisting}[language=C++]
+	ump.clear();
+	\end{lstlisting}
+	
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\subsection{Implementation of unordered\_map}
+\begin{itemize}
+	\item[{\LARGE $\diamond$}] \textbf{Search in $O(1)$ time:}
+	\begin{lstlisting}[language=C++]
+	string item; cin >> item;
+	if(ump.count(item)==0) {
+		cout << item << " is not available." << endl;
+	}
+	else {
+		cout << item << " is available, and its value is " << ump[item] << endl;
+	}	
+	\end{lstlisting}
+	
+	\item[{\LARGE $\diamond$}] \textbf{Iterate over all the key-value pairs:}
+	\begin{lstlisting}[language=C++]
+	//for(auto item: ump) also valid
+	for(pair<string,int> item: ump) {
+		cout << item.first << "-" << item.second << endl;
+	} 
+	\end{lstlisting}
+\end{itemize}
+
+
+
+
+
+
+
