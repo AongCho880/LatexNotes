@@ -909,3 +909,98 @@ public class DrawingApp {
 \end{frame}
 
 
+%-------- Curors -------------
+\newpage
+\section{Set Cursor}
+
+\begin{frame}
+
+\AddToShipoutPictureFG*{ % Add figure to foreground of current page
+  \put(\LenToUnit{13cm},\LenToUnit{17cm}){% Adjust the coordinates as needed
+    \includegraphics[width=7cm]{Figures/cursor1.png}
+  }
+}
+
+\AddToShipoutPictureFG*{ % Add figure to foreground of current page
+  \put(\LenToUnit{13cm},\LenToUnit{5cm}){% Adjust the coordinates as needed
+    \includegraphics[width=7cm]{Figures/cursor2.png}
+  }
+}
+
+\lstset{
+  basicstyle=\fontsize{8}{10}\selectfont\ttfamily
+}
+\begin{lstlisting}[language=java]
+
+package SwingTwo;
+
+import java.awt.*;
+
+import javax.swing.*;
+
+public class CursorDemo extends JFrame {
+	private static final long serialVersionUID = 1L;
+	
+	private Container container;
+	private JLabel heading, label1, label2;
+	private Font font;
+	private Cursor cursor1, cursor2;
+	
+	CursorDemo() {
+		this.setTitle("Cursor Demo");
+		this.setSize(700,500);
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		initComponents();
+	}
+	
+	public void initComponents() {
+		
+		font = new Font("Arial",Font.PLAIN,22);
+		cursor1 = new Cursor(Cursor.HAND_CURSOR);
+		cursor2 = new Cursor(Cursor.MOVE_CURSOR);
+		
+		container = this.getContentPane();
+		container.setLayout(null);
+		
+		//----- Heading Label
+		heading = new JLabel("Move Cursor On The Boxs");
+		heading.setFont(font);
+		heading.setBounds(200,70,300,30);
+		container.add(heading);
+		
+		//--- Label 1
+		label1 = new JLabel();
+		label1.setFont(font);
+		label1.setBounds(90,150,200,200);
+		label1.setOpaque(true);
+		label1.setBackground(Color.decode("#6a1cb0"));
+		label1.setCursor(cursor1); // Add cursor
+		container.add(label1);
+		
+		
+		
+		
+		//--- Label 2
+		label2 = new JLabel();
+		label2.setFont(font);
+		label2.setBounds(350,150,200,200);
+		label2.setOpaque(true);
+		label2.setBackground(Color.decode("#b71b77"));
+		label2.setCursor(cursor2);	// Add cursor
+		container.add(label2);
+		
+	}
+
+	public static void main(String[] args) {
+		
+		CursorDemo frame = new CursorDemo();
+		frame.setVisible(true);
+	}
+
+}
+\end{lstlisting}
+
+\end{frame}
+
+
