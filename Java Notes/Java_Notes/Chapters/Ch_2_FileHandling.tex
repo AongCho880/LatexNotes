@@ -1,0 +1,337 @@
+\chapter{File Handling In Java}
+
+% ---------------- Section 1 -----------------------
+\section{Create, Delete and Get The Path Of The Dir.}
+\lstset{
+  basicstyle=\fontsize{8}{10}\selectfont\ttfamily,
+}
+\begin{lstlisting}[language=java]
+package fileHandling;
+
+import java.io.File;
+
+public class A_CreateDir {
+
+	public static void main(String[] args) {
+		// It will create the directory at the current project directory.
+		File dir = new File("Test"); // we can use directory path also
+		dir.mkdir();
+		
+		//---- Get The File Directory
+		String dirPath = dir.getAbsolutePath();
+		String name = dir.getName();
+		System.out.println("Dir Name: "+name+"\nPath: "+dirPath);
+		
+		//---- Delete Directory If Exist
+		if(dir.delete()) {
+			System.out.println(name+" directory has been deleted.");
+		}
+		
+	}
+}
+
+\end{lstlisting}
+
+
+% ---------------- Section 2 -----------------------
+\newpage
+\section{Create File and Delete File}
+\lstset{
+  	basicstyle=\fontsize{8}{10}\selectfont\ttfamily,
+}
+\begin{lstlisting}[language=java]
+package fileHandling;
+
+import java.io.File;
+import java.util.*;
+
+public class B_CreateFile {
+
+	public static void main(String[] args) {
+		//---- File Must Be Exist Other Wise Create Directory
+		//---- Set The Directory path
+		File dir = new File("TextFile");
+		
+		//------ Get The Directory Path
+		String path = dir.getAbsolutePath();
+		
+		//---- Set File Name And Path
+		File file1 = new File(path+"/file1.txt");
+		File file2 = new File(path+"/file2.txt");
+		
+		try {
+			
+			// ---- Create New File
+			file1.createNewFile();
+			file2.createNewFile();
+			
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		//--- Check If A File Exist
+		if(file2.exists()) {
+			//---- Delete File
+			file2.delete();
+		}
+	}
+}
+
+\end{lstlisting}
+
+
+%------------- Ways to write data into a file -----------------
+\newpage
+\section{Ways To Write Data Into a File in Java}
+
+\subsection{FileWriter Class}
+\begin{itemize}
+	\item \textit{FileWriter} is used for writing character data into a file.
+	\item It`s suitable for writing simple text-based data.
+	\item You can write strings and characters directly to the file.
+\end{itemize}
+\textbf{Code:}
+\lstset{
+  	basicstyle=\fontsize{8}{10}\selectfont\ttfamily,
+}
+\begin{lstlisting}[language=java]
+package fileHandling;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Formatter;
+
+public class WriteInFile {
+	public static void main(String[] args) {	
+		FileWriter writer = null;
+		
+		try {
+			writer = new FileWriter("Output.txt");
+			
+			char c = 'A';
+			writer.write(c); //----- write single character
+			writer.write('\n');
+			
+			char[] charArry = {'X', 'Y', 'Z'};
+			writer.write(charArry); //--- Write array of characters
+			writer.write('\n');
+			
+			String str = "This is a string";
+			writer.write(str);	//--- write string
+			writer.write('\n');
+			
+			writer.flush(); //- Ensure the data is immediately written to the file
+			writer.close();
+		} catch (IOException e) {
+			System.out.println(e);
+		}
+	}
+}
+\end{lstlisting}
+
+%--------------------------------
+\newpage
+\subsection{BufferedWriter Class}
+\begin{itemize}
+	\item This approach combines a \textbf{BufferedWriter} with a \textbf{FileWriter} to improve efficiency when writing large amounts of text data.
+	\item It reduces the number of disk writes and is useful for optimizing performance
+\end{itemize}
+\textbf{Code:}
+\lstset{
+  	basicstyle=\fontsize{8}{10}\selectfont\ttfamily,
+}
+\begin{lstlisting}[language=java]
+package fileHandling;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class WriteInFile {
+
+	public static void main(String[] args) {
+		
+		FileWriter fWriter = null;
+		BufferedWriter bWriter = null;
+		
+		try {
+			fWriter = new FileWriter("Output.txt");
+			bWriter = new BufferedWriter(fWriter);
+			
+			bWriter.write('A');
+			bWriter.newLine();
+			bWriter.write("This is a String");
+			bWriter.flush();
+			
+			fWriter.close();
+			bWriter.close();
+		} catch (IOException e) {
+			System.out.println(e);
+		}
+	}
+
+}
+
+\end{lstlisting}
+
+
+%--------------------------------
+\newpage
+\subsection{PrintWriter Class}
+\begin{itemize}
+	\item \textbf{PrintWriter} is useful for writing formatted text data into a file.
+	\item It provides methods like \textbf{\texttt{printf}} and \textbf{\texttt{println}} for formatting output.
+\end{itemize}
+
+\textbf{Code:}
+\lstset{
+  	basicstyle=\fontsize{8}{10}\selectfont\ttfamily,
+}
+\begin{lstlisting}[language=java]
+package fileHandling;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+public class WriteInFile {
+
+	public static void main(String[] args) {
+		
+		FileWriter fWriter = null;
+		PrintWriter pWriter = null;
+		
+		try {
+			fWriter = new FileWriter("Output.txt");
+			pWriter = new PrintWriter(fWriter);
+			
+
+			pWriter.println("Hello World");
+			pWriter.println("This is PrintWriter");
+			pWriter.printf("Formatted Output: %s : %d + %d = %d %n", "Sum",5,7,12);
+			pWriter.write("New Line");
+			pWriter.flush();
+			
+			fWriter.close();
+			pWriter.close();
+		} catch (IOException e) {
+			System.out.println(e);
+		}
+	}
+
+}
+
+\end{lstlisting}
+
+
+%-------------- Java Formatter Class ----------------
+\newpage
+\section{Java Formatter Class}
+The Java \textit{Formatter} class is defined in the \textit{java.util} package and is declared final. It, therefore, cannot be extended or sub-classed.\\
+With the help of this class, we can send formatted outputs to other outputs streams or devices, such as a GUI component or to a file apart from standard output.\\
+\textbf{Formatter Construction}
+\begin{itemize}
+	\item \textbf{Formatter() :}
+	\item \textbf{Formatter(Appendable a) :}
+	\item \textbf{Formatter(Appendable a, Locale loc) :}
+	\item \textbf{Formatter(File file) :} The file parameter of this constructor designates a reference to a open file where the output will be streamed.\\
+\end{itemize}
+
+\textbf{Using Formatter}
+\begin{itemize}
+	\item \textbf{\%S or \%s :} Specifies String
+	\item \textbf{\%X or \%x :} Specifies hexadecimal integer
+	\item \textbf{\%o :} Specifies Octal integer
+	\item \textbf{\%d :} Specifies Decimal integer
+	\item \textbf{\%c :} Specifies character
+	\item \textbf{\%T or \%t :} Specifies Time and Date
+	\item \textbf{\%n :} Insets newline character
+	\item \textbf{\%B or \%b :} Specifies Boolean
+	\item \textbf{\%A or \%a :} Specifies floating point hexadecimal
+	\item \textbf{\%f :} Specifies Decimal floating point\\
+\end{itemize}
+
+\newpage
+\subsection{A Few Quick Examples}
+
+\textbf{Using argument\_index}
+
+\lstset{
+  	basicstyle=\fontsize{8}{10}\selectfont\ttfamily,
+}
+\begin{lstlisting}[language=java]
+Formatter f2 = new Formatter();
+f2.format("%2$s %1$s %3$s", "fear", "weakness","strengthen");
+System.out.println(f2);
+f2.close();
+
+// Output: weakness fear strengthen		
+\end{lstlisting}
+
+
+\textbf{Regionalize Date}
+
+\lstset{
+  	basicstyle=\fontsize{8}{10}\selectfont\ttfamily,
+}
+\begin{lstlisting}[language=java]
+Formatter f3=new Formatter();
+f3.format(Locale.FRENCH,"%1$te %1$tB, %1$tY", Calendar.getInstance());
+System.out.println(f3);
+f3.close();
+
+Formatter f4=new Formatter();
+f4.format(Locale.ENGLISH,"%1$te %1$tB, %1$tY",Calendar.getInstance());
+System.out.println(f4);
+f4.close();
+
+// Output: 7 octobre, 2023
+//  		   7 October, 2023		
+\end{lstlisting}
+
+
+\textbf{Using \%n and \%\% Specifiers}
+
+\lstset{
+  	basicstyle=\fontsize{8}{10}\selectfont\ttfamily,
+}
+\begin{lstlisting}[language=java]
+Formatter f = new Formatter();
+f.format("Format%n %.2f%% complete", 46.6);
+System.out.println(f);
+f.close();
+	
+// Output: Format
+//			46.60% complete
+\end{lstlisting}
+
+\textbf{Write in a file}
+
+\lstset{
+  	basicstyle=\fontsize{8}{10}\selectfont\ttfamily,
+}
+\begin{lstlisting}[language=java]
+public class WriteInFile {
+	public static void main(String[] args) {
+		//--- "TestFile" directory must be exist in the project directory
+		File file = new File("TextFile");
+		String path = file.getAbsolutePath();
+		System.out.println(path);
+		
+		try {
+			Formatter formatter = new Formatter(path+"/file1.txt");
+			formatter.format("%s %s %s\n", "21701002","Aong Cho","CSE");
+			formatter.format("%s %s %s\n", "21701001","Taqi Ismile","CSE");
+			formatter.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+}
+\end{lstlisting}
+
+
+
+
+
